@@ -52,7 +52,8 @@ def get_extensions():
     sources = [os.path.join(extensions_dir, s) for s in sources]
 
     include_dirs = [extensions_dir]
-    include_dirs.append("/usr/local/include/opencv4")
+    include_dirs.append("./include/cmn")
+    library_dirs = ["./lib/cmn"]
     ext_modules = [
         extension(
             "maskrcnn_benchmark._C",
@@ -67,6 +68,7 @@ def get_extensions():
             include_dirs=copy.deepcopy(include_dirs),
             define_macros=copy.deepcopy(define_macros),
             extra_compile_args=copy.deepcopy(extra_compile_args),
+            library_dirs=library_dirs,
             libraries=custom_ops_libraries
         ),
     ]
